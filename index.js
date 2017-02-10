@@ -9,7 +9,9 @@ function openTab(cmd, options, cb) {
   if (os.platform() !== 'darwin') {
     throw new Error('No support for this operating system but feel free to fork the repo and add it :)');
   }
-
+  
+  console.log(options)
+  
   var open = ['osascript -e \'tell application "Terminal" to activate\' ',
            '-e \'tell application "System Events" to tell process "Terminal" to keystroke "t"',
            'using command down\' ',
