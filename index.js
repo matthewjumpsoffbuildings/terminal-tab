@@ -5,7 +5,7 @@ var child;
 
 var args = process.argv;
 
-function openTab(cmd, cb) {
+function openTab(cmd, options, cb) {
   if (os.platform() !== 'darwin') {
     throw new Error('No support for this operating system but feel free to fork the repo and add it :)');
   }
@@ -17,7 +17,7 @@ function openTab(cmd, cb) {
            '"', cmd, '"',
            'in selected tab of the front window\''].join('');
 
-  child = exec(open, function(error, stdout, stderr) {
+  child = exec(open, options, function(error, stdout, stderr) {
     if (error) {
 
     }
@@ -41,7 +41,7 @@ process.stdin.pipe(through(function(buf) {
 }, function() {
 }));
 
-if (args.length > 2) {
+if (args.length > 3) {
   openTab(args.slice(2).join(' '));
   process.exit(0);
 }
